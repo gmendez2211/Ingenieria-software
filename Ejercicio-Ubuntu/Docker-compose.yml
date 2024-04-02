@@ -1,0 +1,29 @@
+version: "3.8"
+services:
+  Srv-Ubuntu01:
+    image: ubuntu
+    container_name: Ubuntu01
+    command: ["sleep","infinity"]
+    volumes:
+      - .data01:/etc/data01
+    networks:
+      red_interna:
+        ipv4_address: 192.168.10.2
+    hostname: srv-01
+  Srv-Ubuntu02:
+    image: ubuntu
+    container_name: Ubuntu02
+    command: ["sleep","infinity"]
+    volumes:
+      - .data02:/etc/data02
+    networks:
+      red_interna:
+        ipv4_address: 192.168.10.3
+    hostname: srv-02     
+networks:  
+    red_interna:
+      driver: bridge
+      ipam:
+        config:
+         - subnet: "192.168.10.0/24"
+           gateway: "192.168.10.1"
