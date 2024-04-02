@@ -1,0 +1,17 @@
+services:
+  nginx:
+  #Podemos sustiuirlo por la configuración del archivo Dockerfile   
+   #image: nginx:alpine
+   volumes:
+     - ./templates:/etc/nginx/templates
+   build:
+    context: .
+   container_name: webapp3002
+   ports: 
+     - 3002:80
+  tomcat:
+      image: tomcat:9.0.8-jre8-alpine
+      container_name: web_tomcat
+      ports:
+       - 8080:8080
+
